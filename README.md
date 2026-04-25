@@ -63,7 +63,8 @@ Setting up Jenkins was the most time-consuming part of the project — not becau
 The key plugins I configured: Blue Ocean (for the stage view), SonarQube Scanner, OWASP Dependency-Check, Docker Pipeline, and the Kubernetes CLI plugin. Managing plugin version compatibility was the first real debugging exercise of the project.
  
 > 
-> 
+> <img width="1918" height="1077" alt="pipeline" src="https://github.com/user-attachments/assets/dab431fc-c663-4a09-84c2-2be7ef09eada" />
+
 > 
 
 ---
@@ -77,9 +78,8 @@ This stage is the heart of the "shift-left" approach. Before a single line of ap
 **OWASP Dependency-Check:** This stage scans the project's `package.json` dependencies and checks each library's CVE history. The Dependency-Check trend graph in Jenkins shows consistently ~8 High-severity findings across builds — these are known vulnerabilities in the project's third-party dependencies, which I documented rather than suppressed.
 
 > 
-> ![SonarQube Quality Gate](Docs/Sonarqube2.png)
-> ![SonarQube Quality Gate](Docs/sonarqube3.png)
-> 
+> <img width="1918" height="1028" alt="SONARCUBE" src="https://github.com/user-attachments/assets/10fe9c3c-d342-4340-a834-1047d01489e6" />
+
 
 ---
 
@@ -89,8 +89,8 @@ Once the code cleared the security gates, I built the Docker image and pushed it
 
 I kept the image lean by ensuring the build stage only copies what's needed for production — avoiding the common mistake of shipping `devDependencies` and build toolchains into the final image. The image has been pulled 26 times from Docker Hub, confirming it's being successfully retrieved by the Kubernetes deployment manifest.
 
-> 
-> ![Docker Hub](Docs/Dockerhub.png)
+<img width="1918" height="1022" alt="DOCKER" src="https://github.com/user-attachments/assets/28686a8c-dec8-44e5-a03b-c6a3216931b9" />
+
 >
 
 ---
@@ -102,8 +102,8 @@ After the Docker image was pushed, Trivy scanned it for OS-level CVEs — vulner
 I configured Trivy in the pipeline to report findings without hard-failing the build on this stage (a deliberate trade-off documented in the next section), so the pipeline would continue to deployment while the report was archived as a build artifact.
  
 > 
-> ![Final Pipeline Scan](Docs/Jenkins-pipeline.png)
-> 
+><img width="1918" height="1077" alt="pipeline" src="https://github.com/user-attachments/assets/bc52b666-c76f-4a18-abb9-130c58106aec" />
+
 
 ---
 
@@ -113,10 +113,11 @@ The final stage applied a Kubernetes manifest to a single-node cluster (`K8s-Mas
 
 The app was accessible at `54.149.242.216:30009/browse`, serving the full Netflix Clone UI including the TMDB-powered movie catalog (Popular Movies, Top Rated, Now Playing). At the time of the screenshots, I observed two pods in `Pending` state due to resource constraints on the single-node cluster — this is captured honestly as a known limitation of a single-node K8s setup.
 
-> ![K8s-pods](Docs/Kubernetes.png)
-> ![App Live](Docs/Netflix.png)
-> ![App Live](Docs/Netflix2.png)
-> 
+
+<img width="1360" height="745" alt="kuberna" src="https://github.com/user-attachments/assets/b2911530-bdbd-40f4-9578-c30fea3d5e06" />
+<img width="1918" height="1027" alt="netflix" src="https://github.com/user-attachments/assets/6a4af883-d933-401d-8bdb-58de49367413" />
+
+
 
 ---
 
@@ -129,10 +130,10 @@ After deployment, I wired up a monitoring stack to observe the infrastructure:
 - The Node Exporter Full dashboard during an active pipeline run showed CPU at 2.9%, RAM utilization at 91.6%, and SWAP at 73.6% — clear indicators that the instance was under pressure during heavy build stages.
 
 > 
-> ![Grafana Dashboard](Docs/Grafana.png)
-> ![Monitoring](Docs/Monitoring.png)
-> ![Prometheus-Targets](Docs/prometheus-targets.png)
-> 
+> <img width="1891" height="947" alt="Monitoring" src="https://github.com/user-attachments/assets/450cb5ec-f8c5-49c0-82d8-9d990108a93e" />
+<img width="1918" height="1027" alt="PROMETHEUS" src="https://github.com/user-attachments/assets/3c723207-e311-47ca-ab13-e2e9d4d0414a" />
+
+
 
 ---
 
