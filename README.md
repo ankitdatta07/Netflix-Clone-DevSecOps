@@ -77,6 +77,14 @@ This stage is the heart of the "shift-left" approach. Before a single line of ap
 **SonarQube Static Analysis:** I configured a SonarQube project (`Netflix`) manually within the SonarQube Community Edition (v9.9.8). The Jenkins pipeline integrates via a server token, and after the scan, Jenkins waits for the Quality Gate webhook to confirm a `Passed` status before proceeding. On the final run (Build #22), the Netflix project passed with an A-rating on Bugs, Vulnerabilities, and Code Smells — with 0 new issues on new code since April 12, 2026.
 
 **OWASP Dependency-Check:** This stage scans the project's `package.json` dependencies and checks each library's CVE history. The Dependency-Check trend graph in Jenkins shows consistently ~8 High-severity findings across builds — these are known vulnerabilities in the project's third-party dependencies, which I documented rather than suppressed.
+**npm audit Security Scan:** In addition to Dependency-Check, a native Node.js security audit is performed using npm audit. This scan leverages the official npm vulnerability database to identify known security issues within installed packages.
+Unlike Dependency-Check, which provides a broader CVE-based analysis, npm audit offers:
+Ecosystem-specific insights tailored to Node.js packages, Actionable remediation suggestions (e.g., npm audit fix), Faster detection of newly disclosed vulnerabilities in the npm registry.
+Running both tools ensures defense in depth:
+Dependency-Check → Industry-standard CVE correlation
+npm audit → Real-time npm ecosystem vulnerability detection
+
+This dual-layer approach strengthens dependency security by combining comprehensive analysis with ecosystem-specific intelligence, reducing the risk of overlooked vulnerabilities.
 
 > 
 > <img width="1918" height="1028" alt="SONARCUBE" src="https://github.com/user-attachments/assets/10fe9c3c-d342-4340-a834-1047d01489e6" />
