@@ -63,7 +63,7 @@ Setting up Jenkins was the most time-consuming part of the project — not becau
 The key plugins I configured: Blue Ocean (for the stage view), SonarQube Scanner, OWASP Dependency-Check, Docker Pipeline, and the Kubernetes CLI plugin. Managing plugin version compatibility was the first real debugging exercise of the project.
  
 > 
-> ![Jenkins Setup](Docs/jenkins.png)
+> 
 > 
 
 ---
