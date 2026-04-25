@@ -44,6 +44,8 @@ The infrastructure runs on AWS EC2. The Jenkins controller, SonarQube instance, 
 |:---|:---|:---|
 | **Jenkins** | CI/CD Orchestrator | I chose Jenkins over managed solutions (like GitHub Actions) specifically to gain experience with self-hosted automation controllers and Groovy-based pipeline-as-code. Writing a `Jenkinsfile` teaches you what the abstractions are hiding. |
 | **SonarQube** | Static Code Analysis (SAST) | SonarQube gave me a quality gate I could fail the build on. Rather than just generating a report, it integrates as a pipeline-gate — the build proceeds only if the analysis passes. |
+| **npm audit** | NPM Ecosystem Vulnerability Scan | Native to the Node.js ecosystem, npm audit checks project dependencies against the official npm advisory database. It provides real-time vulnerability detection along with actionable remediation steps (e.g., `npm audit fix`), ensuring faster identification and mitigation of risks specific to NPM packages. |
+
 | **OWASP Dependency-Check** | Vulnerable Library Scanning | Supply chain attacks are a real vector. OWASP DC scans the project's NPM dependencies against the NVD (National Vulnerability Database) and surfaces CVEs early, before they're ever packaged into an image. |
 | **Trivy** | Container & Filesystem Scanning | I ran Trivy twice: once on the filesystem (pre-build) and once on the final Docker image. This two-pass approach catches vulnerabilities introduced by the base OS layers in the Docker image itself, not just the application code. |
 | **Docker** | Containerization | Containerizing the app guarantees environment parity — "works on my machine" stops being a valid excuse. The image built on the Jenkins agent behaves identically in Kubernetes. |
