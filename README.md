@@ -125,10 +125,10 @@ The app was accessible at `54.149.242.216:30009/browse`, serving the full Netfli
 
 
 <img width="1360" height="745" alt="kuberna" src="https://github.com/user-attachments/assets/b2911530-bdbd-40f4-9578-c30fea3d5e06" />
-<img width="1917" height="1033" alt="image" src="https://github.com/user-attachments/assets/d68edc88-5261-403b-bf4e-245f3ebf18e5" />
 
 <img width="1918" height="1027" alt="netflix" src="https://github.com/user-attachments/assets/6a4af883-d933-401d-8bdb-58de49367413" />
 
+<img width="1917" height="1033" alt="image" src="https://github.com/user-attachments/assets/d68edc88-5261-403b-bf4e-245f3ebf18e5" />
 
 
 ---
