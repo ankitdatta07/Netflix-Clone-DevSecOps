@@ -63,7 +63,8 @@ Setting up Jenkins was the most time-consuming part of the project — not becau
 The key plugins I configured: Blue Ocean (for the stage view), SonarQube Scanner, OWASP Dependency-Check, Docker Pipeline, and the Kubernetes CLI plugin. Managing plugin version compatibility was the first real debugging exercise of the project.
  
 > 
-> <img width="1918" height="1077" alt="pipeline" src="https://github.com/user-attachments/assets/dab431fc-c663-4a09-84c2-2be7ef09eada" />
+<img width="1918" height="1031" alt="image" src="https://github.com/user-attachments/assets/b97a7266-8762-41ce-8a20-ba6fc3699df4" />
+
 
 > 
 
