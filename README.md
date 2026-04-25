@@ -197,4 +197,4 @@ I'm entering the industry with hands-on experience in the full DevSecOps loop: s
 
 ---
 
-*Deployed on AWS EC2 &nbsp;|&nbsp; K8s Master Node: `ip-172-31-45-218` &nbsp;|&nbsp; App URL: `54.149.242.216:30009/browse` &nbsp;|&nbsp; Last successful build: **#22***
+*Deployed on AWS EC2 
