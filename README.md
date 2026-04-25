@@ -39,22 +39,18 @@ The infrastructure runs on AWS EC2. The Jenkins controller, SonarQube instance, 
 ---
 
 ## 🛠️ Tech Stack & Engineering Rationale
-
 | Tool | Role | Why I Chose It |
 |:---|:---|:---|
-| **Jenkins** | CI/CD Orchestrator | I chose Jenkins over managed solutions (like GitHub Actions) specifically to gain experience with self-hosted automation controllers and Groovy-based pipeline-as-code. Writing a `Jenkinsfile` teaches you what the abstractions are hiding. |
-| **SonarQube** | Static Code Analysis (SAST) | SonarQube gave me a quality gate I could fail the build on. Rather than just generating a report, it integrates as a pipeline-gate — the build proceeds only if the analysis passes. |
-
-| **npm audit** | NPM Ecosystem Vulnerability Scan | Native to the Node.js ecosystem, npm audit checks project dependencies against the official npm advisory database. It provides real-time vulnerability detection along with actionable remediation steps (e.g., `npm audit fix`), ensuring faster identification and mitigation of risks specific to NPM packages. |
-
-| **OWASP Dependency-Check** | Vulnerable Library Scanning | Supply chain attacks are a real vector. OWASP DC scans the project's NPM dependencies against the NVD (National Vulnerability Database) and surfaces CVEs early, before they're ever packaged into an image. |
-
-| **Trivy** | Container & Filesystem Scanning | I ran Trivy twice: once on the filesystem (pre-build) and once on the final Docker image. This two-pass approach catches vulnerabilities introduced by the base OS layers in the Docker image itself, not just the application code. |
-| **Docker** | Containerization | Containerizing the app guarantees environment parity — "works on my machine" stops being a valid excuse. The image built on the Jenkins agent behaves identically in Kubernetes. |
-| **Docker Hub** `dock279/netflix` | Image Registry | Chosen for simplicity and its free tier. The image is tagged `latest` and pulled directly by the Kubernetes manifest during deployment. |
-| **Kubernetes** | Container Orchestration | K8s handles rolling deployments and ensures the app stays available even if a pod is rescheduled. Using a `NodePort` service exposed the app on port `30009` for external access without requiring a cloud load balancer. |
-| **Prometheus + Node Exporter** | Metrics Collection | Prometheus scrapes system-level metrics (CPU, memory, I/O) from Node Exporter running on the K8s master node (`localhost:9100`). This gives me visibility into the infrastructure health post-deployment. |
-| **Grafana** | Observability Dashboard | I imported the "Node Exporter Full" dashboard to visualize the metrics Prometheus collected. Seeing RAM usage at 91.6% during a heavy pipeline run was a concrete reminder of why right-sizing instances matters. |
+| **Jenkins** | CI/CD Orchestrator | I chose Jenkins over managed solutions (like GitHub Actions) to gain hands-on experience with self-hosted automation and Groovy-based pipeline-as-code. Writing a `Jenkinsfile` exposes what higher-level abstractions hide. |
+| **SonarQube** | Static Code Analysis (SAST) | Provides a strict Quality Gate that can fail the build. Instead of just generating reports, it enforces code quality by allowing the pipeline to proceed only when standards are met. |
+| **npm audit** | NPM Ecosystem Vulnerability Scan | Native to Node.js, it checks dependencies against the official npm advisory database. It offers real-time vulnerability detection with actionable fixes (e.g., `npm audit fix`), enabling quick remediation. |
+| **OWASP Dependency-Check** | Vulnerable Library Scanning | Detects known CVEs in third-party dependencies using the NVD. This helps identify supply chain risks early, before dependencies are packaged into deployable artifacts. |
+| **Trivy** | Container & Filesystem Scanning | Executed in two stages: pre-build (filesystem) and post-build (Docker image). This ensures vulnerabilities in both application code and base OS layers are detected. |
+| **Docker** | Containerization | Ensures environment consistency across development and deployment. Eliminates "works on my machine" issues by standardizing runtime environments. |
+| **Docker Hub** (`dock279/netflix`) | Image Registry | Chosen for simplicity and free-tier access. Stores versioned images that are pulled directly by Kubernetes during deployment. |
+| **Kubernetes** | Container Orchestration | Manages deployment, scaling, and availability. A `NodePort` service exposes the application externally on port `30009` without needing a cloud load balancer. |
+| **Prometheus + Node Exporter** | Metrics Collection | Collects system-level metrics (CPU, memory, I/O) from the Kubernetes node (`localhost:9100`), providing visibility into infrastructure health. |
+| **Grafana** | Observability Dashboard | Visualizes Prometheus metrics using dashboards like "Node Exporter Full," enabling real-time monitoring and performance analysis. |
 
 ---
 
