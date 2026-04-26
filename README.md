@@ -75,7 +75,7 @@ The key plugins I configured: Blue Ocean (for the stage view), SonarQube Scanner
 
 This stage is the heart of the "shift-left" approach. Before a single line of application code is compiled or packaged, two independent security checks run:
 
-**SonarQube Static Analysis:** I configured a SonarQube project (`Netflix`) manually within the SonarQube Community Edition (v9.9.8). The Jenkins pipeline integrates via a server token, and after the scan, Jenkins waits for the Quality Gate webhook to confirm a `Passed` status before proceeding. On the final run (Build #22), the Netflix project passed with an A-rating on Bugs, Vulnerabilities, and Code Smells — with 0 new issues on new code since April 12, 2026.
+**SonarQube Static Analysis:** I configured a SonarQube project (`Netflix`) manually within the SonarQube Community Edition (v9.9.8). The Jenkins pipeline integrates via a server token, and after the scan, Jenkins waits for the Quality Gate webhook to confirm a `Passed` status before proceeding. On the final run (Build #36), the Netflix project passed with an A-rating on Bugs, Vulnerabilities, and Code Smells — with 0 new issues on new code since April 12, 2026.
 
 **OWASP Dependency-Check:** This stage scans the project's `package.json` dependencies and checks each library's CVE history. The Dependency-Check trend graph in Jenkins shows consistently ~8 High-severity findings across builds — these are known vulnerabilities in the project's third-party dependencies, which I documented rather than suppressed.
 
@@ -96,7 +96,7 @@ This dual-layer approach strengthens dependency security by combining comprehens
 
 ### Step 3: Containerization with Docker
 
-Once the code cleared the security gates, I built the Docker image and pushed it to Docker Hub (`dock279/netflix:latest`). The image was built from a custom Dockerfile targeting the Netflix Clone's TypeScript/Node.js codebase (3.2k lines of TypeScript as reported by SonarQube).
+Once the code cleared the security gates, I built the Docker image and pushed it to Docker Hub . The image was built from a custom Dockerfile targeting the Netflix Clone's TypeScript/Node.js codebase (3.2k lines of TypeScript as reported by SonarQube).
 
 I kept the image lean by ensuring the build stage only copies what's needed for production — avoiding the common mistake of shipping `devDependencies` and build toolchains into the final image. The image has been pulled 26 times from Docker Hub, confirming it's being successfully retrieved by the Kubernetes deployment manifest.
 
