@@ -191,7 +191,7 @@ I'm entering the industry with hands-on experience in the full DevSecOps loop: s
 - SonarQube Community Edition v9.9.8 — [sonarqube.org](https://www.sonarqube.org)
 - OWASP Dependency-Check — [owasp.org](https://owasp.org/www-project-dependency-check/)
 - Trivy by Aqua Security — [aquasecurity.github.io/trivy](https://aquasecurity.github.io/trivy)
-- Docker Hub (`dock279/netflix`) — [hub.docker.com](https://hub.docker.com)
+- Docker Hub  — [hub.docker.com](https://hub.docker.com)
 - Prometheus — [prometheus.io](https://prometheus.io)
 - Grafana — [grafana.com](https://grafana.com)
 - Kubernetes — [kubernetes.io](https://kubernetes.io)
