@@ -48,7 +48,7 @@ The infrastructure runs on AWS EC2. The Jenkins controller, SonarQube instance, 
 | **OWASP Dependency-Check** | Vulnerable Library Scanning | Detects known CVEs in third-party dependencies using the NVD. This helps identify supply chain risks early, before dependencies are packaged into deployable artifacts. |
 | **Trivy** | Container & Filesystem Scanning | Executed in two stages: pre-build (filesystem) and post-build (Docker image). This ensures vulnerabilities in both application code and base OS layers are detected. |
 | **Docker** | Containerization | Ensures environment consistency across development and deployment. Eliminates "works on my machine" issues by standardizing runtime environments. |
-| **Docker Hub** (`dock279/netflix`) | Image Registry | Chosen for simplicity and free-tier access. Stores versioned images that are pulled directly by Kubernetes during deployment. |
+| **Docker Hub**  | Image Registry | Chosen for simplicity and free-tier access. Stores versioned images that are pulled directly by Kubernetes during deployment. |
 | **Kubernetes** | Container Orchestration | Manages deployment, scaling, and availability. A `NodePort` service exposes the application externally on port `30009` without needing a cloud load balancer. |
 | **Prometheus + Node Exporter** | Metrics Collection | Collects system-level metrics (CPU, memory, I/O) from the Kubernetes node (`localhost:9100`), providing visibility into infrastructure health. |
 | **Grafana** | Observability Dashboard | Visualizes Prometheus metrics using dashboards like "Node Exporter Full," enabling real-time monitoring and performance analysis. |
