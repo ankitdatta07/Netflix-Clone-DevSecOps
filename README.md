@@ -181,8 +181,6 @@ Before this project, CI/CD was an abstract concept. After building it from scrat
 
 The most important thing I internalized is that **a CI/CD pipeline is only as useful as the gates it enforces**. A pipeline that always passes teaches you nothing and protects nothing. The deliberate decision to make SonarQube and OWASP hard gates, rather than optional reports, is what gives this pipeline its actual value.
 
-I'm entering the industry with hands-on experience in the full DevSecOps loop: source → static analysis → dependency audit → container build → image scan → orchestrated deployment → infrastructure monitoring. That end-to-end ownership is what I was building toward.
-
 ---
 
 ## 🔗 References & Tools Used
