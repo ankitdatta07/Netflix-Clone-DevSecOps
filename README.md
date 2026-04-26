@@ -31,7 +31,8 @@ GitHub (Source) → Jenkins (Orchestrator)
 ```
 
 > 
-> ![Architecture Diagram](Docs/arch.png)
+><img width="1692" height="929" alt="ChatGPT Image Apr 26, 2026, 10_17_09 PM" src="https://github.com/user-attachments/assets/4696df7d-25cd-41d0-a689-658c32f27436" />
+
 > 
 
 The infrastructure runs on AWS EC2. The Jenkins controller, SonarQube instance, and Kubernetes master (`K8s-Master`) were provisioned on separate nodes to avoid resource contention — a lesson I learned the hard way when SonarQube's embedded database started competing with Jenkins' build workers for heap space.
